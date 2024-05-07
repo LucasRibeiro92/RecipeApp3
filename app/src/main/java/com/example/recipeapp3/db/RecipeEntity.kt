@@ -14,5 +14,7 @@ data class RecipeEntity(
     @ColumnInfo(name = "note_ingredient")
     var recipeIngredient:String ="",
     @ColumnInfo(name = "note_instruction")
-    var recipeInstruction:String =""
+    var recipeInstruction:String ="",
+    @ColumnInfo(name = "note_image_path")
+    var recipeImagePath:String =""
 )

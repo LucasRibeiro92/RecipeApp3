@@ -25,17 +25,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setupBindings()
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-        setupListener()
         binding!!.apply {
-            /*
-            buttonAddRecipe.setOnClickListener() {
-                val intent = Intent(this, AddRecipeActivity::class.java)
-                startActivity(intent)
+
+            btnAddRecipe.setOnClickListener {
+                AddRecipeFragment().show(supportFragmentManager, AddRecipeFragment().tag)
             }
-            */
+
             viewModel.getAllRecipes()
             viewModel.recipesList.observe(this@MainActivity) {
                 if (it.isNotEmpty()) {
@@ -60,14 +57,14 @@ class MainActivity : AppCompatActivity() {
 
         buttonAddRecipe = binding.buttonAddRecipe
     }
-    */
+
     private fun setupListener() {
         binding?.buttonAddRecipe?.setOnClickListener() {
             val intent = Intent(this, AddRecipeActivity::class.java)
             startActivity(intent)
         }
     }
-
+    */
 
     private fun showEmpty(isShown: Boolean) {
         binding!!.apply {
