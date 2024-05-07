@@ -5,7 +5,9 @@ import com.example.recipeapp3.db.RecipeEntity
 
 class DatabaseRepository(private val dao: RecipeDao) {
 
-    fun saveRecipe(note: RecipeEntity) = dao.saveRecipe(note)
+    fun saveRecipe(recipe: RecipeEntity) = dao.saveRecipe(recipe)
     fun getAllRecipes() = dao.getAllRecipes()
+    fun deleteRecipe(recipe: RecipeEntity) = dao.deleteRecipe(recipe)
+    fun updateRecipe(recipe: RecipeEntity) = dao.updateRecipe(recipe)
 
 }

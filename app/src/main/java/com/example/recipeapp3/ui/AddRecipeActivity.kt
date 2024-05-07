@@ -38,6 +38,8 @@ class AddRecipeActivity : AppCompatActivity() {
                 // Criar uma instância da Recipe com os dados inseridos
                 val recipe = RecipeEntity(recipeTitle = title, recipeIngredient = ingredients, recipeInstruction = instructions)
 
+                Log.d(TAG, "Recipe to be saver: ${recipe}")
+
                 // Chamar o método insert da RecipeViewModel para salvar a receita
                 recipeViewModel.saveRecipe(recipe)
 
@@ -51,6 +53,5 @@ class AddRecipeActivity : AppCompatActivity() {
             }
         }
     }
-
 
 }
