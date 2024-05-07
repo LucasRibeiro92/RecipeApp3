@@ -1,6 +1,6 @@
 package com.example.recipeapp3.utils
 
 object Constants {
-    const val NOTE_TABLE= "note_table"
-    const val NOTE_DATABASE= "note_database"
+    const val RECIPE_TABLE= "recipe_table"
+    const val RECIPE_DATABASE= "recipe_database"
 }

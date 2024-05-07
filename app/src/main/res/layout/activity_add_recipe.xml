@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.AddRecipeActivity"
+    android:padding="16dp"
+    android:backgroundTint="@color/mygray">
+
+    <TextView
+        android:id="@+id/addRecipeHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:text="Add Recipe."
+        android:textSize="24sp"
+        android:textColor="@color/mygreen"
+        tools:ignore="RelativeOverlap"/>
+
+    <ImageView
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/addRecipeHeading"
+        android:layout_marginEnd="6dp"
+        app:srcCompat="@drawable/baseline_done_24"/>
+
+    <EditText
+        android:id="@+id/titleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="Type a title."
+        android:padding="12dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/addRecipeHeading"
+        android:background="@drawable/green_border"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:autofillHints=""
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/ingredientEditText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="Enter the ingredients."
+        android:gravity="top"
+        android:padding="12dp"
+        android:textSize="18sp"
+        android:layout_below="@+id/titleEditText"
+        android:background="@drawable/green_border"
+        android:layout_marginTop="12dp"
+        android:autofillHints=""
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/instructionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="Enter the ingredients."
+        android:gravity="top"
+        android:padding="12dp"
+        android:textSize="18sp"
+        android:layout_below="@+id/ingredientEditText"
+        android:background="@drawable/green_border"
+        android:layout_marginTop="12dp"
+        android:autofillHints=""
+        android:inputType="text"/>
+
+</RelativeLayout>
