@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
+        //bApply()
         binding!!.apply {
 
             btnAddRecipe.setOnClickListener {
@@ -51,21 +52,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     /*
-    private fun setupBindings() {
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    private fun bApply(){
+        binding!!.apply {
 
-        buttonAddRecipe = binding.buttonAddRecipe
-    }
+            btnAddRecipe.setOnClickListener {
+                AddRecipeFragment().show(supportFragmentManager, AddRecipeFragment().tag)
+            }
 
-    private fun setupListener() {
-        binding?.buttonAddRecipe?.setOnClickListener() {
-            val intent = Intent(this, AddRecipeActivity::class.java)
-            startActivity(intent)
+            viewModel.getAllRecipes()
+            viewModel.recipesList.observe(this@MainActivity) {
+                if (it.isNotEmpty()) {
+                    showEmpty(true)
+                    recipeAdapter.differ.submitList(it)
+                    recyclerViewRecipes.apply {
+                        layoutManager = LinearLayoutManager(this@MainActivity)
+                        adapter = recipeAdapter
+                    }
+                } else {
+                    showEmpty(false)
+                }
+            }
+
         }
     }
     */
-
     private fun showEmpty(isShown: Boolean) {
         binding!!.apply {
             if (isShown) {
