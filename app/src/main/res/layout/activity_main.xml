@@ -9,15 +9,17 @@
         android:id="@+id/containerSearch"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@color/mygray">
+        android:background="@drawable/rounded_corner_with_background">
 
         <EditText
             android:id="@+id/editTextSearch"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Search Recipes"
+            android:layout_height="45dp"
+            android:hint="@string/search_for_recipes"
             android:layout_margin="16dp"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/white"
+            tools:ignore="Autofill,TextFields" />
 
     </RelativeLayout>
 
@@ -26,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/containerSearch"
-        android:layout_above="@+id/buttonAddRecipe"
+        android:layout_above="@+id/btnAddRecipe"
         android:layout_marginTop="8dp" />
 
     <TextView

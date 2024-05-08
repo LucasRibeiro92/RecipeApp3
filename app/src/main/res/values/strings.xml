@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Recipe App 3</string>
     <string name="there_is_no_note">There is no note</string>
+    <string name="search_for_recipes">Search for recipes...</string>
 </resources>
