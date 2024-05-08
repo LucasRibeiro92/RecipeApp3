@@ -29,7 +29,11 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
     private var recipeImagePath = ""
 
     companion object {
-        fun newInstance() = UpdateRecipeFragment()
+        fun newInstance(recipe: RecipeEntity) = UpdateRecipeFragment().apply {
+            arguments = Bundle().apply {
+                putParcelable("recipe", recipe)
+            }
+        }
     }
 
     override fun onCreateView(
@@ -47,6 +51,13 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
 
 
         binding?.apply {
+
+            recipe?.let {
+                edtTitle.setText(it.recipeTitle)
+                edtDesc.setText(it.recipeIngredient)
+                // Preencher outros campos conforme necessário
+            }
+
             imgClose.setOnClickListener { dismiss() }
 
             btnSave.setOnClickListener {

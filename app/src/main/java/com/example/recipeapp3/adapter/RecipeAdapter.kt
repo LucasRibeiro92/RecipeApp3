@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipeapp3.databinding.ItemRecipeBinding
 import com.example.recipeapp3.db.RecipeEntity
+import com.example.recipeapp3.ui.UpdateRecipeFragment
 
 class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
 
@@ -30,6 +31,14 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
     override fun getItemCount(): Int = differ.currentList.size
 
     inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.updateButton.setOnClickListener {
+                val item = differ.currentList[adapterPosition]
+                val fragment = UpdateRecipeFragment.newInstance(item)
+                fragment.show(supportFragmentManager, UpdateRecipeFragment::class.java.simpleName)
+            }
+        }
 
         @SuppressLint("SetTextI18n")
         fun bind(item: RecipeEntity) {
