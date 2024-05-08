@@ -1,6 +1,7 @@
 package com.example.recipeapp3.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,28 +19,11 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentUpdateRecipeBinding? = null
     private val binding get() = _binding
-    private val recipe by lazy { RecipeEntity() }
     private val viewModel: DatabaseViewModel by inject()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let { args ->
-            val recipe = args.getSerializable("recipe") as RecipeEntity
-            recipe.let {
-                // Faça o que for necessário com o objeto RecipeEntity
-                // Por exemplo, configure os campos nos seus elementos de UI
-                binding?.edtUpdateTitle?.setText(it.recipeTitle)
-                binding?.edtUpdateDesc?.setText(it.recipeIngredient)
-            }
-        }
-    }
-
     companion object {
-        fun newInstance(recipe: RecipeEntity) = UpdateRecipeFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable("recipe", recipe)
-            }
-        }
+        fun newInstance() = UpdateRecipeFragment()
+
     }
 
     override fun onCreateView(
@@ -54,33 +38,42 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED
-        binding?.apply {
-            imgClose.setOnClickListener { dismiss() }
+        val bundle = arguments
+        // Check if the Bundle is not null
+        if (bundle != null) {
+            // Retrieve data class object from the Bundle using the key
+            val recipe = bundle.getSerializable("recipe") as RecipeEntity
+            // Now you have the data object, you can use it in your Fragment
+            binding?.apply {
+                binding?.edtUpdateTitle?.setText(recipe.recipeTitle)
+                binding?.edtUpdateDesc?.setText(recipe.recipeIngredient)
 
-            btnUpdateSave.setOnClickListener {
+                imgClose.setOnClickListener { dismiss() }
 
-                val recipeTitle = edtUpdateTitle.text.toString()
-                val recipeIngredient = edtUpdateDesc.text.toString()
-                val recipeInstruction = edtUpdateDesc.text.toString()
-                val recipeImagePath = edtUpdateDesc.text.toString()
+                btnUpdateSave.setOnClickListener {
 
-                if (recipeTitle.isEmpty()) {
-                    Snackbar.make(it, "Title and Description cannot be Empty!", Snackbar.LENGTH_SHORT)
-                        .show()
-                } else {
+                    val recipeTitle = edtUpdateTitle.text.toString()
+                    val recipeIngredient = edtUpdateDesc.text.toString()
+                    val recipeInstruction = edtUpdateDesc.text.toString()
+                    val recipeImagePath = edtUpdateDesc.text.toString()
 
-                    recipe.recipeId = 0
-                    recipe.recipeTitle = recipeTitle
-                    recipe.recipeIngredient = recipeIngredient
-                    recipe.recipeInstruction = recipeInstruction
-                    recipe.recipeImagePath = recipeImagePath
+                    if (recipeTitle.isEmpty()) {
+                        Snackbar.make(it, "Title cannot be Empty!", Snackbar.LENGTH_SHORT)
+                            .show()
+                    } else {
 
-                    viewModel.updateRecipe(recipe)
+                        recipe.recipeTitle = recipeTitle
+                        recipe.recipeIngredient = recipeIngredient
+                        recipe.recipeInstruction = recipeInstruction
+                        recipe.recipeImagePath = recipeImagePath
 
-                    edtUpdateTitle.setText("")
-                    edtUpdateDesc.setText("")
+                        viewModel.updateRecipe(recipe)
 
-                    dismiss()
+                        edtUpdateTitle.setText("")
+                        edtUpdateDesc.setText("")
+
+                        dismiss()
+                    }
                 }
             }
         }
