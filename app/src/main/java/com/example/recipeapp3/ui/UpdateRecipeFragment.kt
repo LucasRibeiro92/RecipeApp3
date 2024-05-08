@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.recipeapp3.R
+import com.example.recipeapp3.databinding.FragmentAddRecipeBinding
 import com.example.recipeapp3.databinding.FragmentUpdateRecipeBinding
 import com.example.recipeapp3.db.RecipeEntity
 import com.example.recipeapp3.viewmodel.DatabaseViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
 
 class UpdateRecipeFragment : BottomSheetDialogFragment() {
@@ -24,39 +28,59 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
     private var recipeInstruction = ""
     private var recipeImagePath = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    companion object {
+        fun newInstance() = UpdateRecipeFragment()
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_update_recipe, container, false)
+    ): View {
+        _binding = FragmentUpdateRecipeBinding.inflate(layoutInflater)
+        return binding!!.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UpdateRecipeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UpdateRecipeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED
+
+
+        binding?.apply {
+            imgClose.setOnClickListener { dismiss() }
+
+            btnSave.setOnClickListener {
+
+                recipeTitle = edtTitle.text.toString()
+                recipeIngredient = edtDesc.text.toString()
+                recipeInstruction = edtDesc.text.toString()
+                recipeImagePath = edtDesc.text.toString()
+
+                if (recipeTitle.isEmpty()) {
+                    Snackbar.make(it, "Title and Description cannot be Empty!", Snackbar.LENGTH_SHORT)
+                        .show()
+                } else {
+
+                    recipe.recipeId = 0
+                    recipe.recipeTitle = recipeTitle
+                    recipe.recipeIngredient = recipeIngredient
+                    recipe.recipeInstruction = recipeInstruction
+                    recipe.recipeImagePath = recipeImagePath
+
+                    viewModel.updateRecipe(recipe)
+
+                    edtTitle.setText("")
+                    edtDesc.setText("")
+
+                    dismiss()
                 }
             }
+        }
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

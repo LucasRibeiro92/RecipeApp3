@@ -25,5 +25,7 @@ class DatabaseViewModel(private val repository: DatabaseRepository) : ViewModel(
         repository.saveRecipe(recipe)
     }
 
-
+    fun updateRecipe(recipe: RecipeEntity) = viewModelScope.launch {
+        repository.updateRecipe(recipe)
+    }
 }
