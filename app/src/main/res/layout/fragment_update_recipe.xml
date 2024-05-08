@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@id/imgClose">
 
         <EditText
-            android:id="@+id/edtTitle"
+            android:id="@+id/edtUpdateTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -61,7 +61,7 @@
         tools:layout_editor_absoluteX="8dp">
 
         <EditText
-            android:id="@+id/edtDesc"
+            android:id="@+id/edtUpdateDesc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="15dp"
@@ -75,7 +75,7 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnSave"
+        android:id="@+id/btnUpdateSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"

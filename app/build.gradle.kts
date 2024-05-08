@@ -87,4 +87,6 @@ dependencies {
     val activity_version = "1.9.0"
     implementation("androidx.activity:activity-ktx:$activity_version")
     */
+
+    implementation("com.google.code.gson:gson:2.8.8")
 }

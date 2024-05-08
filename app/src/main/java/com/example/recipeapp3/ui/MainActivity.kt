@@ -1,15 +1,9 @@
 package com.example.recipeapp3.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.recipeapp3.R
 import com.example.recipeapp3.adapter.RecipeAdapter
 import com.example.recipeapp3.databinding.ActivityMainBinding
 import com.example.recipeapp3.viewmodel.DatabaseViewModel
@@ -19,7 +13,6 @@ class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding
-
     private val recipeAdapter by lazy { RecipeAdapter() }
     private val viewModel: DatabaseViewModel by inject()
 
@@ -27,31 +20,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-        //bApply()
-        binding!!.apply {
-
-            btnAddRecipe.setOnClickListener {
-                AddRecipeFragment().show(supportFragmentManager, AddRecipeFragment().tag)
-            }
-
-            viewModel.getAllRecipes()
-            viewModel.recipesList.observe(this@MainActivity) {
-                if (it.isNotEmpty()) {
-                    showEmpty(true)
-                    recipeAdapter.differ.submitList(it)
-                    recyclerViewRecipes.apply {
-                        layoutManager = LinearLayoutManager(this@MainActivity)
-                        adapter = recipeAdapter
-                    }
-                } else {
-                    showEmpty(false)
-                }
-            }
-
-        }
+        bApply()
     }
 
-    /*
+
     private fun bApply(){
         binding!!.apply {
 
@@ -75,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-    */
+
     private fun showEmpty(isShown: Boolean) {
         binding!!.apply {
             if (isShown) {
@@ -88,8 +60,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-        _binding = null
-    }
 }

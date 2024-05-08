@@ -1,9 +1,9 @@
 package com.example.recipeapp3.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -36,11 +36,13 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
             binding.updateButton.setOnClickListener {
                 val item = differ.currentList[adapterPosition]
                 val fragment = UpdateRecipeFragment.newInstance(item)
-                fragment.show(supportFragmentManager, UpdateRecipeFragment::class.java.simpleName)
+                fragment.show(
+                    (binding.root.context as AppCompatActivity).supportFragmentManager,
+                    UpdateRecipeFragment::class.java.simpleName
+                )
             }
         }
 
-        @SuppressLint("SetTextI18n")
         fun bind(item: RecipeEntity) {
             binding.apply {
                 tvTitle.text = item.recipeTitle
