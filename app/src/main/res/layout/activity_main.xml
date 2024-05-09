@@ -43,17 +43,32 @@
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/editTextSearch"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/search_for_recipes"
-            android:layout_margin="32dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/green_border"
-            android:paddingStart="20dp"
-            android:fontFamily="@font/poppins"
-            tools:ignore="Autofill,TextFields" />
+            android:orientation="horizontal"
+            android:layout_margin="32dp">
+
+            <EditText
+                android:id="@+id/editTextSearch"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:hint="@string/search_for_recipes"
+                android:background="@drawable/green_border"
+                android:paddingStart="20dp"
+                android:fontFamily="@font/poppins"
+                tools:ignore="Autofill,TextFields" />
+
+            <ImageView
+                android:id="@+id/ivFilter"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/baseline_filter_list_24"
+                android:contentDescription="Filtering" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 
