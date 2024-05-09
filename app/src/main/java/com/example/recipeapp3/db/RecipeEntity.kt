@@ -17,7 +17,15 @@ data class RecipeEntity(
     @ColumnInfo(name = "recipe_instruction")
     var recipeInstruction: String = "",
     @ColumnInfo(name = "recipe_image_path")
-    var recipeImagePath: String = ""
+    var recipeImagePath: String = "",
+    @ColumnInfo(name = "recipe_is_favorite")
+    var recipeIsFavorite: Boolean = false,
+    @ColumnInfo(name = "recipe_cuisine")
+    var recipeCuisine: String = "",
+    @ColumnInfo(name = "recipe_category")
+    var recipeCategory: String = "",
+    @ColumnInfo(name = "recipe_time")
+    var recipeTime: Int = 0
 ) : Serializable
 
 
