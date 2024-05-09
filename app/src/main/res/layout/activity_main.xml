@@ -8,18 +8,51 @@
     <RelativeLayout
         android:id="@+id/containerSearch"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:background="@drawable/rounded_bottom_corners_background">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_extralight"
+                android:text="Recipe"
+                android:textColor="@color/mygreen"
+                android:textSize="40sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="App"
+                android:textSize="40sp"
+                android:textColor="@color/mygreen"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/noddleicon"
+                android:layout_marginStart="5dp"/>
+
+        </LinearLayout>
 
         <EditText
             android:id="@+id/editTextSearch"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
             android:hint="@string/search_for_recipes"
             android:layout_margin="32dp"
             android:layout_alignParentBottom="true"
             android:background="@drawable/green_border"
             android:paddingStart="20dp"
+            android:fontFamily="@font/poppins"
             tools:ignore="Autofill,TextFields" />
 
     </RelativeLayout>
@@ -49,6 +82,9 @@
         android:text="Add Recipe"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp"
+        android:textColor="@color/mygray"
+        android:backgroundTint="@color/mygreen"
+        android:fontFamily="@font/poppins"/>
 
 </RelativeLayout>
