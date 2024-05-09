@@ -10,6 +10,7 @@
     <string name="add_recipe">Add recipe</string>
     <string name="recipe_details">Recipe details</string>
     <string name="image_path">Image path...</string>
+    <string name="filter_recipes">Filter recipes</string>
     <string-array name="cuisine_options">
         <item>Italian</item>
         <item>Japanese</item>
