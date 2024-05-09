@@ -25,7 +25,7 @@ data class RecipeEntity(
     @ColumnInfo(name = "recipe_category")
     var recipeCategory: String = "",
     @ColumnInfo(name = "recipe_time")
-    var recipeTime: Int = 0
+    var recipeTime: String = ""
 ) : Serializable
 
 

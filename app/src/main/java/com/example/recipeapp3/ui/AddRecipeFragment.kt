@@ -28,6 +28,9 @@ class AddRecipeFragment : BottomSheetDialogFragment() {
     private var recipeIngredient = ""
     private var recipeInstruction = ""
     private var recipeImagePath = ""
+    private var recipeTime = ""
+    private var recipeCuisine = ""
+    private var recipeCategory = ""
 
     companion object {
         fun newInstance() = AddRecipeFragment()
@@ -55,7 +58,10 @@ class AddRecipeFragment : BottomSheetDialogFragment() {
                 recipeTitle = edtTitle.text.toString()
                 recipeIngredient = edtIngredient.text.toString()
                 recipeInstruction = edtInstruction.text.toString()
-                recipeImagePath = edtIngredient.text.toString()
+                recipeImagePath = edtImgPath.text.toString()
+                recipeTime = edtTimeCook.text.toString()
+                recipeCuisine = spnRecipeCuisine.selectedItem.toString()
+                recipeCategory = spnRecipeCategory.selectedItem.toString()
 
                 if (recipeTitle.isEmpty()) {
                     Snackbar.make(it, "Title and Description cannot be Empty!", Snackbar.LENGTH_SHORT)
@@ -67,12 +73,19 @@ class AddRecipeFragment : BottomSheetDialogFragment() {
                     recipe.recipeIngredient = recipeIngredient
                     recipe.recipeInstruction = recipeInstruction
                     recipe.recipeImagePath = recipeImagePath
+                    recipe.recipeTime = recipeTime
+                    recipe.recipeCuisine = recipeCuisine
+                    recipe.recipeCategory = recipeCategory
 
                     viewModel.saveRecipe(recipe)
 
                     edtTitle.setText("")
                     edtIngredient.setText("")
                     edtInstruction.setText("")
+                    edtImgPath.setText("")
+                    edtTimeCook.setText("")
+                    spnRecipeCuisine.setSelection(0)
+                    spnRecipeCategory.setSelection(0)
 
                     dismiss()
                 }
