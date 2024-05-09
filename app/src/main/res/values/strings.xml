@@ -9,4 +9,17 @@
     <string name="instructions">Instructions...</string>
     <string name="add_recipe">Add recipe</string>
     <string name="recipe_details">Recipe details</string>
+    <string name="image_path">Image path...</string>
+    <string-array name="cuisine_options">
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Indian</item>
+        <!-- Adicione outras opções conforme necessário -->
+    </string-array>
+
+    <string-array name="category_options">
+        <item>Dishe</item>
+        <item>Dessert</item>
+        <!-- Adicione outras opções conforme necessário -->
+    </string-array>
 </resources>
