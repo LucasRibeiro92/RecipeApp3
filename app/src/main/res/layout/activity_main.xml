@@ -83,8 +83,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="16dp"
-        android:textColor="@color/mygray"
+        android:textColor="@color/black"
         android:backgroundTint="@color/mygreen"
-        android:fontFamily="@font/poppins"/>
+        android:fontFamily="@font/poppins"
+        android:textSize="16sp"/>
 
 </RelativeLayout>
