@@ -46,16 +46,17 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
             // Now you have the data object, you can use it in your Fragment
             binding?.apply {
                 binding?.edtUpdateTitle?.setText(recipe.recipeTitle)
-                binding?.edtUpdateDesc?.setText(recipe.recipeIngredient)
+                binding?.edtUpdateIngredient?.setText(recipe.recipeIngredient)
+                binding?.edtUpdateInstruction?.setText(recipe.recipeInstruction)
 
                 imgClose.setOnClickListener { dismiss() }
 
                 btnUpdateSave.setOnClickListener {
 
                     val recipeTitle = edtUpdateTitle.text.toString()
-                    val recipeIngredient = edtUpdateDesc.text.toString()
-                    val recipeInstruction = edtUpdateDesc.text.toString()
-                    val recipeImagePath = edtUpdateDesc.text.toString()
+                    val recipeIngredient = edtUpdateIngredient.text.toString()
+                    val recipeInstruction = edtUpdateInstruction.text.toString()
+                    val recipeImagePath = edtUpdateTitle.text.toString()
 
                     if (recipeTitle.isEmpty()) {
                         Snackbar.make(it, "Title cannot be Empty!", Snackbar.LENGTH_SHORT)
@@ -70,7 +71,8 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
                         viewModel.updateRecipe(recipe)
 
                         edtUpdateTitle.setText("")
-                        edtUpdateDesc.setText("")
+                        edtUpdateIngredient.setText("")
+                        edtUpdateInstruction.setText("")
 
                         dismiss()
                     }

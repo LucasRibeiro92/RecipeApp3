@@ -53,9 +53,9 @@ class AddRecipeFragment : BottomSheetDialogFragment() {
             btnSave.setOnClickListener {
 
                 recipeTitle = edtTitle.text.toString()
-                recipeIngredient = edtDesc.text.toString()
-                recipeInstruction = edtDesc.text.toString()
-                recipeImagePath = edtDesc.text.toString()
+                recipeIngredient = edtIngredient.text.toString()
+                recipeInstruction = edtInstruction.text.toString()
+                recipeImagePath = edtIngredient.text.toString()
 
                 if (recipeTitle.isEmpty()) {
                     Snackbar.make(it, "Title and Description cannot be Empty!", Snackbar.LENGTH_SHORT)
@@ -71,7 +71,8 @@ class AddRecipeFragment : BottomSheetDialogFragment() {
                     viewModel.saveRecipe(recipe)
 
                     edtTitle.setText("")
-                    edtDesc.setText("")
+                    edtIngredient.setText("")
+                    edtInstruction.setText("")
 
                     dismiss()
                 }

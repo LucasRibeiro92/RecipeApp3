@@ -13,21 +13,34 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/baseline_close_24"
-        app:layout_constraintBottom_toTopOf="@id/titleCard"
+        app:layout_constraintBottom_toTopOf="@id/cardUpdateTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
+    <TextView
+        android:id="@+id/updateTaskHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/recipe_details"
+        android:textColor="@color/mygreen"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/cardUpdateTitle"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/titleCard"
+        android:id="@+id/cardUpdateTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
-        app:layout_constraintBottom_toTopOf="@id/descCard"
+        app:layout_constraintBottom_toTopOf="@id/cardUpdateIngredient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgClose">
@@ -46,28 +59,57 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/descCard"
+        android:id="@+id/cardUpdateIngredient"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="100dp"
         android:layout_margin="8dp"
         android:maxLines="1"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnSave"
+        app:layout_constraintBottom_toTopOf="@+id/cardUpdateInstruction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleCard"
+        app:layout_constraintTop_toBottomOf="@id/cardUpdateTitle"
         tools:layout_editor_absoluteX="8dp">
 
         <EditText
-            android:id="@+id/edtUpdateDesc"
+            android:id="@+id/edtUpdateIngredient"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:background="@android:color/transparent"
             android:gravity="top"
-            android:hint="Description"
+            android:hint="@string/ingredients"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardUpdateInstruction"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="8dp"
+        android:maxLines="1"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnUpdateSave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardUpdateIngredient"
+        tools:layout_editor_absoluteX="8dp">
+
+        <EditText
+            android:id="@+id/edtUpdateInstruction"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="@string/instructions"
             android:inputType="text"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -82,10 +124,10 @@
         android:src="@drawable/baseline_done_24"
         android:text="Save"
         android:textColor="@color/white"
-        app:backgroundTint="#4CAF50"
+        app:backgroundTint="@color/mygreen"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/descCard"
-        app:layout_constraintTop_toBottomOf="@id/descCard"
+        app:layout_constraintEnd_toEndOf="@+id/cardUpdateInstruction"
+        app:layout_constraintTop_toBottomOf="@id/cardUpdateInstruction"
         app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
