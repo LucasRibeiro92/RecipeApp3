@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.recipeapp3.R
 import com.example.recipeapp3.databinding.FragmentUpdateRecipeBinding
 import com.example.recipeapp3.db.RecipeEntity
 import com.example.recipeapp3.viewmodel.DatabaseViewModel
@@ -52,6 +53,10 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
                 binding?.edtUpdateTitle?.setText(recipe.recipeTitle)
                 binding?.edtUpdateIngredient?.setText(recipe.recipeIngredient)
                 binding?.edtUpdateInstruction?.setText(recipe.recipeInstruction)
+                binding?.edtUpdateImgPath?.setText(recipe.recipeImagePath)
+                binding?.edtUpdateTimeCook?.setText(recipe.recipeTime)
+                binding?.spnUpdateRecipeCuisine?.setSelection(getCuisinePosition(recipe.recipeCuisine))
+                binding?.spnUpdateRecipeCategory?.setSelection(getCategoryPosition(recipe.recipeCategory))
 
                 imgClose.setOnClickListener { dismiss() }
 
@@ -60,7 +65,10 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
                     val recipeTitle = edtUpdateTitle.text.toString()
                     val recipeIngredient = edtUpdateIngredient.text.toString()
                     val recipeInstruction = edtUpdateInstruction.text.toString()
-                    val recipeImagePath = edtUpdateTitle.text.toString()
+                    val recipeImagePath = edtUpdateImgPath.text.toString()
+                    val recipeTimeToCook = edtUpdateTimeCook.text.toString()
+                    val recipeCuisine = spnUpdateRecipeCuisine.selectedItem.toString()
+                    val recipeCategory = spnUpdateRecipeCategory.selectedItem.toString()
 
                     if (recipeTitle.isEmpty()) {
                         Snackbar.make(it, "Title cannot be Empty!", Snackbar.LENGTH_SHORT)
@@ -71,12 +79,19 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
                         recipe.recipeIngredient = recipeIngredient
                         recipe.recipeInstruction = recipeInstruction
                         recipe.recipeImagePath = recipeImagePath
+                        recipe.recipeTime = recipeTimeToCook
+                        recipe.recipeCuisine = recipeCuisine
+                        recipe.recipeCategory = recipeCategory
 
                         viewModel.updateRecipe(recipe)
 
                         edtUpdateTitle.setText("")
                         edtUpdateIngredient.setText("")
                         edtUpdateInstruction.setText("")
+                        edtUpdateImgPath.setText("")
+                        edtUpdateTimeCook.setText("")
+                        spnUpdateRecipeCuisine.setSelection(0)
+                        spnUpdateRecipeCategory.setSelection(0)
 
                         dismiss()
                     }
@@ -86,6 +101,16 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
             dismiss()
         }
 
+    }
+
+    private fun getCuisinePosition(recipeCuisine: String): Int {
+        val cuisineOptions = resources.getStringArray(R.array.cuisine_options)
+        return cuisineOptions.indexOf(recipeCuisine)
+    }
+
+    private fun getCategoryPosition(recipeCategory: String): Int {
+        val categoryOptions = resources.getStringArray(R.array.category_options)
+        return categoryOptions.indexOf(recipeCategory)
     }
 
     override fun onDestroyView() {
