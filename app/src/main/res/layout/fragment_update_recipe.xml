@@ -29,7 +29,8 @@
         android:textColor="@color/mygreen"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@id/cardUpdateTitle"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/poppins_semibold"/>
 
 
     <androidx.cardview.widget.CardView
@@ -51,10 +52,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:background="@android:color/transparent"
-            android:hint="Title"
+            android:hint="@string/recipe_name"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -83,7 +85,8 @@
             android:hint="@string/ingredients"
             android:inputType="text"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -96,7 +99,7 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnUpdateSave"
+        app:layout_constraintBottom_toTopOf="@+id/cardUpdateImgPath"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardUpdateIngredient"
@@ -112,7 +115,118 @@
             android:hint="@string/instructions"
             android:inputType="text"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardUpdateImgPath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:maxLines="1"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardUpdateTimeCook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardUpdateInstruction"
+        tools:layout_editor_absoluteX="8dp">
+
+        <EditText
+            android:id="@+id/edtUpdateImgPath"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="@string/image_path"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardUpdateTimeCook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:maxLines="1"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardUpdateCuisine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardUpdateImgPath"
+        tools:layout_editor_absoluteX="8dp">
+
+        <EditText
+            android:id="@+id/edtUpdateTimeCook"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="Time to cook..."
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardUpdateCuisine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:maxLines="1"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardUpdateCategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardUpdateTimeCook"
+        tools:layout_editor_absoluteX="8dp">
+
+        <Spinner
+            android:id="@+id/spnUpdateRecipeCuisine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:entries="@array/cuisine_options"
+            android:fontFamily="@font/poppins"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardUpdateCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:maxLines="1"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnUpdateSave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardUpdateCuisine"
+        tools:layout_editor_absoluteX="8dp">
+
+        <Spinner
+            android:id="@+id/spnUpdateRecipeCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:entries="@array/category_options"
+            android:fontFamily="@font/poppins"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -126,8 +240,8 @@
         android:textColor="@color/white"
         app:backgroundTint="@color/mygreen"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/cardUpdateInstruction"
-        app:layout_constraintTop_toBottomOf="@id/cardUpdateInstruction"
+        app:layout_constraintEnd_toEndOf="@+id/cardUpdateCategory"
+        app:layout_constraintTop_toBottomOf="@id/cardUpdateCategory"
         app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
