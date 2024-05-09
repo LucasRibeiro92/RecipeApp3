@@ -2,6 +2,7 @@ package com.example.recipeapp3.adapter
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +37,7 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
         init {
             binding.updateButton.setOnClickListener {
                 val item = differ.currentList[adapterPosition]
+                Log.d("Receita a ser instanciada no update fragment","$item")
                 val bundle = Bundle()
                 bundle.putSerializable("recipe", item)
                 val fragment = UpdateRecipeFragment.newInstance()

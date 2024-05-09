@@ -43,6 +43,10 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
         if (bundle != null) {
             // Retrieve data class object from the Bundle using the key
             val recipe = bundle.getSerializable("recipe") as RecipeEntity
+
+            if(recipe.recipeId == 0 ||recipe.recipeTitle == null) {
+                dismiss()
+            }
             // Now you have the data object, you can use it in your Fragment
             binding?.apply {
                 binding?.edtUpdateTitle?.setText(recipe.recipeTitle)
@@ -78,6 +82,8 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
                     }
                 }
             }
+        } else {
+            dismiss()
         }
 
     }
