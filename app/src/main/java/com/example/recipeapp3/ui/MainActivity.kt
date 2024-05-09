@@ -28,6 +28,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun bApply(){
         binding!!.apply {
+
+            ivFilter.setOnClickListener {
+                FilterRecipeFragment().show(supportFragmentManager, AddRecipeFragment().tag)
+            }
+
             btnAddRecipe.setOnClickListener {
                 AddRecipeFragment().show(supportFragmentManager, AddRecipeFragment().tag)
             }
