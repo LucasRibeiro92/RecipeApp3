@@ -52,7 +52,8 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
         fun bind(item: RecipeEntity) {
             binding.apply {
                 tvTitle.text = item.recipeTitle
-                tvIngredient.text = item.recipeIngredient
+                tvCuisine.text = item.recipeCuisine
+                tvTimeToCook.text = item.recipeTime
             }
         }
     }
