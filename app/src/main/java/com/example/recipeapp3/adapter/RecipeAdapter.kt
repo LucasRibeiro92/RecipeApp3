@@ -35,7 +35,7 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
     inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.updateButton.setOnClickListener {
+            binding.cardItem.setOnClickListener {
                 val item = differ.currentList[adapterPosition]
                 Log.d("Receita a ser instanciada no update fragment","$item")
                 val bundle = Bundle()
