@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.example.recipeapp3.R
+import com.example.recipeapp3.adapter.RecipeAdapter
 import com.example.recipeapp3.databinding.FragmentUpdateRecipeBinding
 import com.example.recipeapp3.db.RecipeEntity
 import com.example.recipeapp3.viewmodel.DatabaseViewModel
@@ -15,12 +17,27 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class UpdateRecipeFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentUpdateRecipeBinding? = null
     private val binding get() = _binding
-    private val viewModel: DatabaseViewModel by inject()
+    private val viewModel: DatabaseViewModel by sharedViewModel()
+    //private var onRecipeUpdatedListener: OnRecipeUpdatedListener? = null
+    private val recipeAdapter by lazy { RecipeAdapter() }
+
+    /*
+    // Método para definir o listener
+    fun setOnRecipeUpdatedListener(listener: OnRecipeUpdatedListener) {
+        onRecipeUpdatedListener = listener
+    }
+
+    // Método para chamar o listener após a atualização
+    private fun notifyRecipeUpdated() {
+        onRecipeUpdatedListener?.onRecipeUpdated()
+    }
+    */
 
     companion object {
         fun newInstance() = UpdateRecipeFragment()
@@ -39,13 +56,18 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED
+        viewModel.recipesList.observe(viewLifecycleOwner, Observer { recipes ->
+            if (recipes.isNotEmpty()) {
+                recipeAdapter.differ.submitList(recipes)
+            }
+        })
         val bundle = arguments
         // Check if the Bundle is not null
         if (bundle != null) {
             // Retrieve data class object from the Bundle using the key
             val recipe = bundle.getSerializable("recipe") as RecipeEntity
 
-            if(recipe.recipeId == 0 ||recipe.recipeTitle == null) {
+            if(recipe.recipeId == 0) {
                 dismiss()
             }
             // Now you have the data object, you can use it in your Fragment
@@ -85,6 +107,7 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
 
                         viewModel.updateRecipe(recipe)
 
+
                         edtUpdateTitle.setText("")
                         edtUpdateIngredient.setText("")
                         edtUpdateInstruction.setText("")
@@ -117,4 +140,10 @@ class UpdateRecipeFragment : BottomSheetDialogFragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    /*
+    interface OnRecipeUpdatedListener {
+        fun onRecipeUpdated()
+    }
+    */
 }

@@ -33,7 +33,7 @@
                 android:paddingEnd="16dp"/>
 
             <ImageView
-                android:id="@+id/completedCheckBox"
+                android:id="@+id/ckbIsFavoriteRecipe"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_alignParentEnd="true"

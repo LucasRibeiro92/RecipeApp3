@@ -26,6 +26,36 @@ data class RecipeEntity(
     var recipeCategory: String = "",
     @ColumnInfo(name = "recipe_time")
     var recipeTime: String = ""
-) : Serializable
+) : Serializable {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is RecipeEntity) return false
+
+        if (recipeId != other.recipeId) return false
+        if (recipeTitle != other.recipeTitle) return false
+        if (recipeIngredient != other.recipeIngredient) return false
+        if (recipeInstruction != other.recipeInstruction) return false
+        if (recipeImagePath != other.recipeImagePath) return false
+        if (recipeIsFavorite != other.recipeIsFavorite) return false
+        if (recipeCuisine != other.recipeCuisine) return false
+        if (recipeCategory != other.recipeCategory) return false
+        if (recipeTime != other.recipeTime) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = recipeId
+        result = 31 * result + recipeTitle.hashCode()
+        result = 31 * result + recipeIngredient.hashCode()
+        result = 31 * result + recipeInstruction.hashCode()
+        result = 31 * result + recipeImagePath.hashCode()
+        result = 31 * result + recipeIsFavorite.hashCode()
+        result = 31 * result + recipeCuisine.hashCode()
+        result = 31 * result + recipeCategory.hashCode()
+        result = 31 * result + recipeTime.hashCode()
+        return result
+    }
+}
 
 

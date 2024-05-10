@@ -24,4 +24,12 @@ interface RecipeDao {
     @Update
     fun updateRecipe(recipe: RecipeEntity)
 
+    // Consulta para pesquisar receitas com base no título
+    @Query("SELECT * FROM $RECIPE_TABLE WHERE recipe_title LIKE '%' || :textToSearch || '%' ORDER BY recipeId DESC")
+    fun searchRecipe(textToSearch: String): Flow<MutableList<RecipeEntity>>
+
+    // Consulta para aplicar filtros com base na cozinha e categoria
+    @Query("SELECT * FROM $RECIPE_TABLE WHERE recipe_cuisine = :cuisine AND recipe_category = :category ORDER BY recipeId DESC")
+    fun filterRecipes(cuisine: String, category: String): Flow<MutableList<RecipeEntity>>
+
 }

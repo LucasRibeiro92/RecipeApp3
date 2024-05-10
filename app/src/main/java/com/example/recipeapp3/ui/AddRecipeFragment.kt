@@ -15,14 +15,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class AddRecipeFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentAddRecipeBinding? = null
     private val binding get() = _binding
-
     private val recipe by lazy { RecipeEntity() }
-    private val viewModel: DatabaseViewModel by inject()
+    private val viewModel: DatabaseViewModel by sharedViewModel()
 
     private var recipeTitle = ""
     private var recipeIngredient = ""
@@ -48,8 +48,6 @@ class AddRecipeFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED
-
-
         binding?.apply {
             imgClose.setOnClickListener { dismiss() }
 

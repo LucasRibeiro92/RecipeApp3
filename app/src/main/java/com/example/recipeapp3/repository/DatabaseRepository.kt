@@ -9,5 +9,7 @@ class DatabaseRepository(private val dao: RecipeDao) {
     fun getAllRecipes() = dao.getAllRecipes()
     fun deleteRecipe(recipe: RecipeEntity) = dao.deleteRecipe(recipe)
     fun updateRecipe(recipe: RecipeEntity) = dao.updateRecipe(recipe)
+    fun searchRecipe(textToSearch: String) = dao.searchRecipe(textToSearch)
+    fun filterRecipes(cuisine: String, category: String) = dao.filterRecipes(cuisine, category)
 
 }

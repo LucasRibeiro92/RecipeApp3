@@ -12,7 +12,8 @@ import kotlinx.coroutines.launch
 class DatabaseViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
     private val _recipesList = MutableLiveData<List<RecipeEntity>>()
-    val recipesList: LiveData<List<RecipeEntity>>
+
+    val recipesList: MutableLiveData<List<RecipeEntity>>
         get() = _recipesList
 
     fun getAllRecipes() = viewModelScope.launch {
@@ -28,4 +29,29 @@ class DatabaseViewModel(private val repository: DatabaseRepository) : ViewModel(
     fun updateRecipe(recipe: RecipeEntity) = viewModelScope.launch {
         repository.updateRecipe(recipe)
     }
+
+    fun filterRecipes(cuisine: String, category: String) = viewModelScope.launch{
+        /*
+        val filteredList = _recipesList.value?.filter {
+            it.recipeCuisine == cuisine && it.recipeCategory == category
+        }
+        _recipesList.postValue(filteredList!!)
+         */
+        repository.filterRecipes(cuisine, category).collect() {
+            _recipesList.value = it
+        }
+    }
+
+    fun searchRecipe(toString: String) = viewModelScope.launch{
+        /*
+        val filteredList = _recipesList.value?.filter {
+            it.recipeTitle.contains(toString, ignoreCase = true) || it.recipeIngredient.contains(toString, ignoreCase = true)
+        }
+        _recipesList.postValue(filteredList!!)
+        */
+        repository.searchRecipe(toString).collect() {
+            _recipesList.value = it
+        }
+    }
+
 }

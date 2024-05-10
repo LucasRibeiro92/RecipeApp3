@@ -32,7 +32,8 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder() : RecyclerView.ViewHolder(binding.root) {
+
 
         init {
             binding.cardItem.setOnClickListener {
@@ -41,13 +42,22 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
                 val bundle = Bundle()
                 bundle.putSerializable("recipe", item)
                 val fragment = UpdateRecipeFragment.newInstance()
+                //fragment.setOnRecipeUpdatedListener(context as UpdateRecipeFragment.OnRecipeUpdatedListener)
                 fragment.arguments = bundle
                 fragment.show(
                     (binding.root.context as AppCompatActivity).supportFragmentManager,
                     UpdateRecipeFragment::class.java.simpleName
                 )
             }
+            /*
+            binding.ckbIsFavoriteRecipe.setOnClickListener {
+                val item = differ.currentList[adapterPosition]
+                binding.apply {
+                    ckbIsFavoriteRecipe.setImageDrawable("")
+            }
+            */
         }
+
 
         fun bind(item: RecipeEntity) {
             binding.apply {
@@ -60,10 +70,16 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<RecipeEntity>() {
         override fun areItemsTheSame(oldItem: RecipeEntity, newItem: RecipeEntity): Boolean {
+            Log.d("TESTEEE", "fez as comparações dos ids")
+            val testeBoolean = oldItem.recipeId == newItem.recipeId
+            Log.d("TESTEEE", "$testeBoolean")
             return oldItem.recipeId == newItem.recipeId
         }
 
         override fun areContentsTheSame(oldItem: RecipeEntity, newItem: RecipeEntity): Boolean {
+            Log.d("TESTEEE", "fez as comparações dos contens")
+            val testeBoolean = oldItem == newItem
+            Log.d("TESTEEE", "$testeBoolean")
             return oldItem == newItem
         }
     }
